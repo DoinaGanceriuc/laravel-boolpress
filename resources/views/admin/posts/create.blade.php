@@ -6,7 +6,7 @@
     <h2 class="text-center">Aggiungi nuovo post</h2>
     @include('partials.errors')
 
-    <form action="" method="post">
+    <form action="{{route('admin.posts.store')}}" method="post">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Titolo post</label>

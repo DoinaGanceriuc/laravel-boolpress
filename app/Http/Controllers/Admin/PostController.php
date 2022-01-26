@@ -38,6 +38,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        //ddd($request->all());
+
+        $valited_data = $request->validate([
+            'image' => 'nullable|url',
+            'title' => 'required|max:255',
+            'description' => 'nullable',
+            'author' => 'required|max:255',
+            'posted_at' => 'nullable|date_format:Y-m-d',
+        ]);
+
+        Post::create($valited_data);
+
+        return redirect()->route('admin.posts.index')->with('message', 'post inserito correttamente');
     }
 
     /**
