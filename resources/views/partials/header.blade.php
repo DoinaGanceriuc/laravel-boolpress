@@ -2,7 +2,7 @@
    <div class="top_left links">
     <a href=""><img src="" alt="">Logo</a>
     <a href="">Products</a>
-    <a href="">News</a>
+    <a href="{{route('guest.posts.index')}}">News</a>
     <a href="">Plans</a>
 </div>
 

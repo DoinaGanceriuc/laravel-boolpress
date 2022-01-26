@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('guest/posts/index', 'PostController@index')->name('guest.posts.index');
+
 Route::namespace ('Admin')->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('posts', 'PostController');
