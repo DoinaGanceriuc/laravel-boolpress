@@ -24,7 +24,7 @@
             <td><img width="80" src="{{$post->image}}" alt="{{$post->title}}"></td>
             <td>{{$post->title}}</td>
             <td>{{$post->author}}</td>
-            <td>{{$post->posted_at}}</td>
+            <td>{{$post->posted_at->format('d/m/Y')}}</td>
             <td>
                 <a class="btn btn-primary" href="">View</a>
                 <a class="btn btn-warning" href="">Edit</a>
