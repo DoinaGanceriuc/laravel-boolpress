@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="text-end mb-3">
-       <a href="" class="btn btn-primary">Create</a>
+       <a href="{{route('admin.posts.create')}}" class="btn btn-primary">Create</a>
     </div>
     <table class="table table-striped">
   <thead>
