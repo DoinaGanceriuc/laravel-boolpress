@@ -11247,3 +11247,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+aside {
+  width: 300px;
+}
+
+.content {
+  width: calc(100vw - 300px);
+}

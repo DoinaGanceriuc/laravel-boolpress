@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container-fluid px-3">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -71,10 +71,25 @@
                 </div>
             </div>
         </nav>
+        <div class="d-flex">
+            <aside class="bg-light">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Plans</a>
+                    </li>
+                </ul>
+            </aside>
+            <main class="py-4 container">
+                @yield('content')
+            </main>
+        </div>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
 </body>
 </html>
