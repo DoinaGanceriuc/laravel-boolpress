@@ -75,10 +75,10 @@
             <aside class="bg-light">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">News</a>
+                        <a class="nav-link" href="{{route('admin.posts.index')}}">News</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Plans</a>
