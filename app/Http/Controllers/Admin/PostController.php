@@ -50,7 +50,7 @@ class PostController extends Controller
 
         Post::create($valited_data);
 
-        return redirect()->route('admin.posts.index')->with('message', 'post inserito correttamente');
+        return redirect()->route('admin.posts.index')->with('message', 'Post inserito correttamente');
     }
 
     /**
@@ -73,7 +73,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -85,7 +85,19 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        //ddd($request->all());
+        $validated_data = $request->validate([
+            'image' => 'nullable|url',
+            'title' => 'required|max:255',
+            'description' => 'nullable',
+            'author' => 'required|max:255',
+            'posted_at' => 'nullable|date_format:Y-m-d',
+        ]);
+
+        $post->update($validated_data);
+
+        return redirect()->route('admin.posts.index')->with(session()->flash('message', 'Post aggiornato correttamente'));
+
     }
 
     /**
