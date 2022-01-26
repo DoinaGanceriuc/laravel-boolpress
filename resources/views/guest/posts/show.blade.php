@@ -13,6 +13,12 @@
             </div>
         </div>
     </div>
+    @auth
+    <div class="px-5">
+        <a class="btn btn-info" href="{{route('admin.posts.index')}}">Back to News</a>
+    </div>
+
+    @endauth
 </div>
 
 @endsection

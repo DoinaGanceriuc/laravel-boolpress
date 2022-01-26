@@ -26,7 +26,7 @@
             <td>{{$post->author}}</td>
             <td>{{$post->posted_at->format('d/m/Y')}}</td>
             <td>
-                <a class="btn btn-primary" href="">View</a>
+                <a class="btn btn-primary" href="{{route('guest.posts.show', $post->id)}}">View</a>
                 <a class="btn btn-warning" href="">Edit</a>
                 <a class="btn btn-danger" href="">Delete</a>
             </td>
