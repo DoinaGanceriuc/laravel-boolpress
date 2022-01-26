@@ -19,3 +19,5 @@ mix.js('resources/js/app.js', 'public/js')
         processCssUrls: false
     })
     .copyDirectory('resources/img', 'public/img');
+
+mix.copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
