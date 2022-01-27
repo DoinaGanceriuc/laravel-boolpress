@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -26,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -40,15 +43,17 @@ class PostController extends Controller
         //
         //ddd($request->all());
 
-        $valited_data = $request->validate([
+        $validated_data = $request->validate([
             'image' => 'nullable|url',
             'title' => 'required|max:255',
             'description' => 'nullable',
-            'author' => 'required|max:255',
             'posted_at' => 'nullable|date_format:Y-m-d',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
-        Post::create($valited_data);
+        $validated_data['slug'] = Str::slug($validated_data['title']);
+
+        Post::create($validated_data);
 
         return redirect()->route('admin.posts.index')->with('message', 'Post inserito correttamente');
     }
@@ -90,7 +95,6 @@ class PostController extends Controller
             'image' => 'nullable|url',
             'title' => 'required|max:255',
             'description' => 'nullable',
-            'author' => 'required|max:255',
             'posted_at' => 'nullable|date_format:Y-m-d',
         ]);
 
