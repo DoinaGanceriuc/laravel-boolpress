@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -44,10 +45,10 @@ class PostController extends Controller
         //ddd($request->all());
 
         $validated_data = $request->validate([
-            'image' => 'nullable|url',
-            'title' => 'required|max:255',
+            'image' => 'nullable|url|max:255',
+            'title' => 'required|unique:posts|max:255',
             'description' => 'nullable',
-            'posted_at' => 'nullable|date_format:Y-m-d',
+            'posted_at' => 'required|date_format:Y-m-d',
             'category_id' => 'nullable|exists:categories,id',
         ]);
 
@@ -94,9 +95,12 @@ class PostController extends Controller
         //ddd($request->all());
         $validated_data = $request->validate([
             'image' => 'nullable|url',
-            'title' => 'required|max:255',
+            'title' => ['required',
+                Rule::unique('posts')->ignore($post->id),
+                'max:255',
+            ],
             'description' => 'nullable',
-            'posted_at' => 'nullable|date_format:Y-m-d',
+            'posted_at' => 'required|date_format:Y-m-d',
             'category_id' => 'nullable|exists:categories,id',
         ]);
 
