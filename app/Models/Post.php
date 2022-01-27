@@ -8,4 +8,10 @@ class Post extends Model
 {
     protected $dates = ['posted_at'];
     protected $fillable = ['image', 'title', 'description', 'author', 'posted_at'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }
