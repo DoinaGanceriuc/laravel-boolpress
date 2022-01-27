@@ -3,6 +3,7 @@
 use App\Models\Post;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class PostSeeder extends Seeder
 {
@@ -17,9 +18,9 @@ class PostSeeder extends Seeder
 
             $post = new Post();
             $post->image = $faker->imageUrl(300, 200, 'Posts');
-            $post->title = $faker->sentence();
+            $post->title = $faker->sentence(2);
+            $post->slug = Str::slug($post->title);
             $post->description = $faker->paragraphs(5, true);
-            $post->author = $faker->name();
             $post->posted_at = $faker->date();
             $post->save();
         }

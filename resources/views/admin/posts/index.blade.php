@@ -14,7 +14,6 @@
       <th scope="col">Id</th>
       <th scope="col">Image</th>
       <th scope="col">Title</th>
-      <th scope="col">Author</th>
       <th scope="col">Posted Date</th>
       <th scope="col">Actions</th>
     </tr>
@@ -25,10 +24,9 @@
             <th scope="row">{{$post->id}}</th>
             <td><img width="80" src="{{$post->image}}" alt="{{$post->title}}"></td>
             <td>{{$post->title}}</td>
-            <td>{{$post->author}}</td>
             <td>{{$post->posted_at->format('d/m/Y')}}</td>
             <td>
-                <a class="btn btn-primary" href="{{route('guest.posts.show', $post->id)}}"><i class="fas fa-eye"></i></a>
+                <a class="btn btn-primary" href="{{route('guest.posts.show', $post->slug)}}"><i class="fas fa-eye"></i></a>
                 <a class="btn btn-warning" href="{{route('admin.posts.edit', $post->id)}}"><i class="fas fa-pencil-alt"></i></a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{$post->id}}">
                 <i class="fas fa-trash-alt"></i>
