@@ -16,6 +16,17 @@
             @enderror
         </div>
         <div class="mb-3">
+            <div class="form-group">
+                <label for="category_id">Categorie</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option selected disabled>Seleziona una categoria</option>
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}" {{$category->id == old('category', $post->category_id) ? 'selected' : ''}}>{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
             <textarea name="description" id="description" rows="3" class="form-control">{{$post->description}}</textarea>
         </div>
@@ -25,10 +36,6 @@
             @error('image')
              <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-        </div>
-        <div class="mb-3">
-            <label for="author" class="form-label">Autore</label>
-            <input type="text" name="author" id="author" class="form-control" aria-describedby="authorHelper" placeholder="" value="{{$post->author}}">
         </div>
         <div class="mb-3">
             <label for="posted_at" class="form-label">Data di creazione</label>
