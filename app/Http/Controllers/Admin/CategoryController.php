@@ -37,7 +37,7 @@ class CategoryController extends Controller
 
         Category::create($validated_data);
 
-        return redirect()->back()->with('message', 'Categoria aggiunta correttamente');
+        return redirect()->back()->with('message', "Categoria '{$request->name}' aggiunta correttamente");
     }
     /**
      * Update the specified resource in storage.
@@ -56,7 +56,7 @@ class CategoryController extends Controller
 
         $category->update($validated_data);
 
-        return redirect()->back()->with('message', 'Categoria aggiornata correttamente');
+        return redirect()->back()->with('message', "Categoria '{$category->name}' aggiornata correttamente");
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->back()->with('message', 'Categoria eliminata correttamente');
+        return redirect()->back()->with('message', "Categoria '{$category->name}' eliminata correttamente");
 
     }
 }
