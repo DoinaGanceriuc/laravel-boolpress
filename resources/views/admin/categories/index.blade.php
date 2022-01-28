@@ -18,9 +18,6 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
-                @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
             </div>
             <div class="col-6">
                 <ul class="list-group">

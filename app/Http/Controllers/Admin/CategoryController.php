@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         //ddd($request->all());
         $validated_data = $request->validate([
-            'name' => 'required|max:255|unique::categories',
+            'name' => 'required|max:255|unique:categories',
         ]);
 
         $validated_data['slug'] = Str::slug($validated_data['name']);
@@ -50,7 +50,7 @@ class CategoryController extends Controller
     {
         //ddd($request->all());
         $validated_data = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:categories',
         ]);
         $validated_data['slug'] = Str::slug($validated_data['name']);
 
