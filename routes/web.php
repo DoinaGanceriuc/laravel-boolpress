@@ -24,6 +24,7 @@ Route::get('guest/posts/index', 'PostController@index')->name('guest.posts.index
 Route::get('guest/posts/{post:slug}', 'PostController@show')->name('guest.posts.show');
 
 Route::get('categories/{category:slug}/posts', 'CategoryController@posts')->name('categories.posts');
+Route::get('tags/{tag:slug}/posts', 'TagController@posts')->name('tags.posts');
 
 Route::namespace ('Admin')->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
