@@ -30,5 +30,6 @@ Route::namespace ('Admin')->prefix('admin')->name('admin.')->middleware('auth')-
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('posts', 'PostController');
     Route::resource('categories', 'CategoryController');
+    Route::resource('tags', 'TagController');
 
 });
