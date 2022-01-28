@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -27,31 +28,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //ddd($request->all());
+        $validated_data = $request->validate([
+            'name' => 'required|max:255|unique::categories',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
+        $validated_data['slug'] = Str::slug($validated_data['name']);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
+        Category::create($validated_data);
 
+        return redirect()->back()->with('message', 'Categoria aggiunta correttamente');
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -61,7 +48,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        //ddd($request->all());
+        $validated_data = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+        $validated_data['slug'] = Str::slug($validated_data['name']);
+
+        $category->update($validated_data);
+
+        return redirect()->back()->with('message', 'Categoria aggiornata correttamente');
     }
 
     /**
