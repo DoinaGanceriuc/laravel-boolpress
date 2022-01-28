@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h2 class="text-center pb-3">Categoria: {{ $category->name }}</h2>
+        <h2 class="text-center pb-3">Tag: {{ $tag->name }}</h2>
         <div class="row">
             @forelse($posts as $post)
                 <div class="col-4">
@@ -18,7 +18,7 @@
                 </div>
             @empty
                 <div class="col">
-                    <p>Nessun post associato ad una categoria</p>
+                    <p>Nessun post associato ad un tag</p>
                 </div>
             @endforelse
 
