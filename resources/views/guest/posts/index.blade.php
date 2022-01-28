@@ -19,7 +19,7 @@
             </div>
         </div>
         <aside class="bg-light">
-            <div class="card px-5 p-3">
+            <div class="card px-5 p-3 mb-3">
                 <h5 class="card-title text-center">Categories</h5>
                 <div class="card-body">
                     <ul class="list-unstyled">
@@ -28,8 +28,19 @@
                                 <a class="text-decoration-none"
                                     href="{{ route('categories.posts', $category->slug) }}">{{ $category->name }}</a>
                             </li>
-
-
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="card px-5 p-3 mb-3">
+                <h5 class="card-title text-center">Tags</h5>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        @foreach ($tags as $tag)
+                            <li>
+                                <a class="text-decoration-none"
+                                    href="{{ route('tags.posts', $tag->slug) }}">{{ $tag->name }}</a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
