@@ -23,6 +23,14 @@
             @endforelse
 
         </div>
+        <div class="back_tags pt-3">
+            @auth
+                <div class="px-5">
+                    <a class="btn btn-info" href="{{ route('admin.tags.index') }}">Back to Tags</a>
+                </div>
+
+            @endauth
+        </div>
     </div>
 
 
