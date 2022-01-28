@@ -43,7 +43,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="{{ $tag->id }}Label">Stai cercanando di
-                                                cancellare la categoria {{ $tag->title }}</h5>
+                                                cancellare il tag {{ $tag->name }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
