@@ -23,7 +23,16 @@
             @endforelse
 
         </div>
+        <div class="back_news pt-3">
+            @auth
+                <div class="px-5">
+                    <a class="btn btn-info" href="{{ route('admin.categories.index') }}">Back to Categories</a>
+                </div>
+
+            @endauth
+        </div>
     </div>
+
 
 
     <div class="container">

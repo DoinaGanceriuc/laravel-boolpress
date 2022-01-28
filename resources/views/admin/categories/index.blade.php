@@ -31,7 +31,8 @@
                                     value="{{ $category->name }}">
                             </form>
 
-                            <span class="badge rounded-pill bg-success me-3">{{ $category->posts()->count() }}</span>
+                            <a href="{{ route('categories.posts', $category->slug) }}"><span
+                                    class="badge rounded-pill bg-success me-3">{{ $category->posts()->count() }}</span></a>
 
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#delete{{ $category->id }}">
