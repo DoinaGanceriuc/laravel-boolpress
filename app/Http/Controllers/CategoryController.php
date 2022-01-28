@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function posts(Category $category)
+    {
+        $posts = $category->posts()->paginate(6);
+        return view('guest.categories.posts', compact('posts', 'category'));
+    }
     /**
      * Display a listing of the resource.
      *
