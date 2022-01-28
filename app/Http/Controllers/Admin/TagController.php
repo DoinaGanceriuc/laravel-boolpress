@@ -37,7 +37,7 @@ class TagController extends Controller
 
         Tag::create($validated_data);
 
-        return redirect()->back()->with('message', 'Tag inserito correttamente');
+        return redirect()->back()->with('message', "Tag '{$request->name}' inserito correttamente");
     }
 
     /**
@@ -58,7 +58,7 @@ class TagController extends Controller
 
         $tag->update($validated_data);
 
-        return redirect()->back()->with('message', 'Tag aggiornato correttamente');
+        return redirect()->back()->with('message', "Tag '{$tag->name}' aggiornato correttamente");
     }
 
     /**
@@ -71,6 +71,6 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return redirect()->back()->with('message', 'Tag eliminato correttamente');
+        return redirect()->back()->with('message', "Tag '{$tag->name}' eliminato correttamente");
     }
 }
