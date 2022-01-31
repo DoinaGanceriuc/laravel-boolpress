@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -20,7 +21,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(9);
+        //$posts = Post::orderBy('id', 'desc')->paginate(9);
+        $posts = Auth::user()->posts()->orderBy('id', 'desc')->paginate(9);
+
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -66,6 +69,8 @@ class PostController extends Controller
 
         $validated_data['slug'] = Str::slug($validated_data['title']);
 
+        $validated_data['user_id'] = Auth::id();
+
         Post::create($validated_data)->tags()->attach($request->tags);
 
         return redirect()->route('admin.posts.index')->with('message', "Post '{$request->title}' inserito correttamente");
@@ -93,7 +98,12 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        if (Auth::id() === $post->user_id) {
+            return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        } else {
+            abort(403);
+        }
+
     }
 
     /**
@@ -106,33 +116,38 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //ddd($request->all());
-        $validated_data = $request->validate([
-            'image' => 'nullable|image|max:100',
-            'title' => ['required',
-                Rule::unique('posts')->ignore($post->id),
-                'max:255',
-            ],
-            'description' => 'nullable',
-            'posted_at' => 'required|date_format:Y-m-d',
-            'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'nullable|exists:tags,id',
-        ]);
+        if (Auth::id() === $post->user_id) {
 
-        if ($request->file('image')) {
-            Storage::delete($post->image);
-            $image_path = Storage::put('post_img', $request->file('image'));
+            $validated_data = $request->validate([
+                'image' => 'nullable|image|max:100',
+                'title' => ['required',
+                    Rule::unique('posts')->ignore($post->id),
+                    'max:255',
+                ],
+                'description' => 'nullable',
+                'posted_at' => 'required|date_format:Y-m-d',
+                'category_id' => 'nullable|exists:categories,id',
+                'tags' => 'nullable|exists:tags,id',
+            ]);
 
-            $validated_data['image'] = $image_path;
+            if ($request->file('image')) {
+                Storage::delete($post->image);
+                $image_path = Storage::put('post_img', $request->file('image'));
 
+                $validated_data['image'] = $image_path;
+
+            }
+            //ddd($validated_data, $image_path);
+
+            $validated_data['slug'] = Str::slug($validated_data['title']);
+
+            $post->update($validated_data);
+            $post->tags()->sync($request->tags);
+
+            return redirect()->route('admin.posts.index')->with(session()->flash('message', "Post '{$post->title}' aggiornato correttamente"));
+        } else {
+            abort(403);
         }
-        //ddd($validated_data, $image_path);
-
-        $validated_data['slug'] = Str::slug($validated_data['title']);
-
-        $post->update($validated_data);
-        $post->tags()->sync($request->tags);
-
-        return redirect()->route('admin.posts.index')->with(session()->flash('message', "Post '{$post->title}' aggiornato correttamente"));
 
     }
 
@@ -144,9 +159,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Storage::delete($post->image);
-        $post->delete();
+        if (Auth::id() === $post->user_id) {
+            Storage::delete($post->image);
+            $post->delete();
 
-        return redirect()->route('admin.posts.index')->with(session()->flash('message', "Post '{$post->title}' eliminato"));
+            return redirect()->route('admin.posts.index')->with(session()->flash('message', "Post '{$post->title}' eliminato"));
+        } else {
+            abort(403);
+        }
     }
 }
