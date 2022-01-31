@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -47,13 +48,21 @@ class PostController extends Controller
         //ddd($request->all());
 
         $validated_data = $request->validate([
-            'image' => 'nullable|url|max:255',
+            'image' => 'nullable|image|max:100',
             'title' => 'required|unique:posts|max:255',
             'description' => 'nullable',
             'posted_at' => 'required|date_format:Y-m-d',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id',
         ]);
+
+        if ($request->file('image')) {
+            $image_path = Storage::put('post_img', $request->file('image'));
+
+            $validated_data['image'] = $image_path;
+
+        }
+        //ddd($validated_data, $image_path);
 
         $validated_data['slug'] = Str::slug($validated_data['title']);
 
@@ -98,7 +107,7 @@ class PostController extends Controller
     {
         //ddd($request->all());
         $validated_data = $request->validate([
-            'image' => 'nullable|url',
+            'image' => 'nullable|image|max:100',
             'title' => ['required',
                 Rule::unique('posts')->ignore($post->id),
                 'max:255',
@@ -108,6 +117,14 @@ class PostController extends Controller
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id',
         ]);
+
+        if ($request->file('image')) {
+            $image_path = Storage::put('post_img', $request->file('image'));
+
+            $validated_data['image'] = $image_path;
+
+        }
+        //ddd($validated_data, $image_path);
 
         $validated_data['slug'] = Str::slug($validated_data['title']);
 
@@ -126,6 +143,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Storage::delete($post->image);
         $post->delete();
 
         return redirect()->route('admin.posts.index')->with(session()->flash('message', "Post '{$post->title}' eliminato"));
