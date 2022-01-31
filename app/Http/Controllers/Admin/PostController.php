@@ -119,6 +119,7 @@ class PostController extends Controller
         ]);
 
         if ($request->file('image')) {
+            Storage::delete($post->image);
             $image_path = Storage::put('post_img', $request->file('image'));
 
             $validated_data['image'] = $image_path;
