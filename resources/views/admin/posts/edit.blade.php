@@ -50,13 +50,21 @@
                 <textarea name="description" id="description" rows="3"
                     class="form-control">{{ $post->description }}</textarea>
             </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Aggiorna immagine</label>
-                <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror"
-                    aria-describedby="imageHelper" value="{{ $post->image }}" accept="images/*">
-                @error('image')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+            <div class="row align-items-center">
+                <div class="col-2">
+                    <img width="80" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+
+                </div>
+                <div class="col-10">
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Aggiorna immagine</label>
+                        <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror"
+                            aria-describedby="imageHelper" accept="images/*">
+                        @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="posted_at" class="form-label">Data di creazione</label>
