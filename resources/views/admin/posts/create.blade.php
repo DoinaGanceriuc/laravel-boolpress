@@ -6,7 +6,7 @@
         <h2 class="text-center">Aggiungi nuovo post</h2>
         @include('partials.errors')
 
-        <form action="{{ route('admin.posts.store') }}" method="post">
+        <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo post</label>
@@ -48,10 +48,9 @@
                     class="form-control">{{ old('description') }}</textarea>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Link immagine</label>
-                <input type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror"
-                    aria-describedby="imageHelper" placeholder="Incolla il link dell'immagine, es: https://"
-                    value="{{ old('image') }}">
+                <label for="image" class="form-label">Carica immagine</label>
+                <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror"
+                    aria-describedby="imageHelper" accept="images/*">
                 @error('image')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

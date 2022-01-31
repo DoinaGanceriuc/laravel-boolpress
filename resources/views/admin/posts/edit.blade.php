@@ -5,7 +5,7 @@
         <h2 class="text-center">Aggiorna post</h2>
         @include('partials.errors')
 
-        <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+        <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -51,10 +51,9 @@
                     class="form-control">{{ $post->description }}</textarea>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Link immagine</label>
-                <input type="text" name="image" id="image" class="form-control @error('image') is-invalid @enderror"
-                    aria-describedby="imageHelper" placeholder="Incolla il link dell'immagine, es: https://"
-                    value="{{ $post->image }}">
+                <label for="image" class="form-label">Aggiorna immagine</label>
+                <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror"
+                    aria-describedby="imageHelper" value="{{ $post->image }}" accept="images/*">
                 @error('image')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
