@@ -5,8 +5,9 @@
     <div class="container p-5">
         <h2 class="text-center pb-5">Contattaci</h2>
         @include('partials.errors')
+        @include('partials.success')
 
-        <form action="" method="post">
+        <form action="{{ route('guest.contacts.send') }}" method="post">
             @csrf
             <div class="row">
                 <div class="col">
@@ -35,7 +36,8 @@
             <div class="mb-3">
                 <label for="subject" class="form-label">Oggetto</label>
                 <input type="text" name="subject" id="subject" class="form-control @error('subject') is-invalid @enderror"
-                    aria-describedby="subjectHelper" placeholder="oggetto mail" required value="{{ old('subject') }}">
+                    aria-describedby="subjectHelper" placeholder="oggetto mail" required minlength="5" maxlength="20"
+                    value="{{ old('subject') }}">
                 @error('subject')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

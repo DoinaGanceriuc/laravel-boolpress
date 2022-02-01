@@ -27,6 +27,7 @@ Route::get('categories/{category:slug}/posts', 'CategoryController@posts')->name
 Route::get('tags/{tag:slug}/posts', 'TagController@posts')->name('tags.posts');
 
 Route::get('guest/contacts', 'PageController@index')->name('guest.contacts');
+Route::post('guest/contacts', 'ContactController@store')->name('guest.contacts.send');
 
 Route::namespace ('Admin')->prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard');
