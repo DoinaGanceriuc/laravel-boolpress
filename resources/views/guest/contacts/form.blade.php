@@ -33,6 +33,14 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label for="subject" class="form-label">Oggetto</label>
+                <input type="text" name="subject" id="subject" class="form-control @error('subject') is-invalid @enderror"
+                    aria-describedby="subjectHelper" placeholder="oggetto mail" required value="{{ old('subject') }}">
+                @error('subject')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="message" class="form-label">Messaggio</label>
                 <textarea name="message" id="message" rows="3" class="form-control" required
                     minlength="30">{{ old('message') }}</textarea>
