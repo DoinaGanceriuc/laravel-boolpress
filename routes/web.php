@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('guest.welcome');
 });
 
+Route::get('/posts', function () {
+    return view('guest.blog.index');
+})->name('guest.blog.index');
+
 Auth::routes();
 
 Route::get('guest/posts/index', 'PostController@index')->name('guest.posts.index');
