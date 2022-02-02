@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -16,12 +17,13 @@ class PostController extends Controller
     public function index()
     {
         //$posts = Post::all();
-        $posts = Post::paginate(9);
+        /*  $posts = Post::paginate(9);
 
         return response()->json([
-            'status_code' => 'ok',
-            'response' => $posts,
-        ]);
+        'status_code' => 'ok',
+        'response' => $posts,
+        ]); */
+        return PostResource::collection(Post::paginate(9));
 
     }
 
