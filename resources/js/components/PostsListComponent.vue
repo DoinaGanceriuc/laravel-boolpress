@@ -6,6 +6,8 @@
                     <img class="w-100 card-img-top" :src=" '/storage/' + post.image" :alt="post.title">
                         <div class="card-body">
                             <h5 class="card-title">{{post.title}} </h5>
+                            <h5 class="card-title" v-if="post.category != null" >Categoria: {{post.category.name}} </h5>
+                            <h5 class="card-title" v-for="tag in post.tags" :key="tag.id">Tag: {{tag.name}} </h5>
                         </div>
                 </div>
             </div>

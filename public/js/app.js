@@ -5146,6 +5146,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -41474,11 +41476,28 @@ var render = function () {
               attrs: { src: "/storage/" + post.image, alt: post.title },
             }),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("h5", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(post.title) + " "),
-              ]),
-            ]),
+            _c(
+              "div",
+              { staticClass: "card-body" },
+              [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(post.title) + " "),
+                ]),
+                _vm._v(" "),
+                post.category != null
+                  ? _c("h5", { staticClass: "card-title" }, [
+                      _vm._v("Categoria: " + _vm._s(post.category.name) + " "),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(post.tags, function (tag) {
+                  return _c("h5", { key: tag.id, staticClass: "card-title" }, [
+                    _vm._v("Tag: " + _vm._s(tag.name) + " "),
+                  ])
+                }),
+              ],
+              2
+            ),
           ]),
         ])
       }),

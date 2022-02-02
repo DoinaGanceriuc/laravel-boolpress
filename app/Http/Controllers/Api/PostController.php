@@ -23,7 +23,8 @@ class PostController extends Controller
         'status_code' => 'ok',
         'response' => $posts,
         ]); */
-        return PostResource::collection(Post::paginate(9));
+        //return PostResource::collection(Post::paginate(9));
+        return PostResource::collection(Post::with(['category', 'tags'])->paginate(15));
 
     }
 
