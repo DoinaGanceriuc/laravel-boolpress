@@ -8,6 +8,41 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+/* SETUP VUE-ROUTER */
+//import Vue from 'vue'
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+/* DEFINIZIONE PAGINE COMPONENTI */
+
+const Home = Vue.component('Home', require('./pages/Home.vue').default);
+const Posts = Vue.component('Posts', require('./pages/Posts.vue').default);
+
+/* DEFINIZIONE ROTTE */
+
+const routes = [
+    {
+        path: '/',
+        name: 'home',
+        component: Home,
+    },
+    {
+        path: '/posts',
+        name: 'posts',
+        component: Posts,
+    }
+
+
+]
+
+/* CREAZIONE VUE ROUTER */
+
+
+const router = new VueRouter({
+    mode: 'history',
+    routes // short for `routes: routes`
+})
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -19,6 +54,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('App', require('./App.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('posts-list-component', require('./components/PostsListComponent.vue').default);
 /**
@@ -28,5 +64,6 @@ Vue.component('posts-list-component', require('./components/PostsListComponent.v
  */
 
 const app = new Vue({
+    router,
     el: '#app',
 });

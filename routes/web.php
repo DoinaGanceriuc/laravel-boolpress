@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('guest.welcome');
+/* Route::get('/', function () {
+return view('guest.welcome');
 });
 
 Route::get('/posts', function () {
-    return view('guest.blog.index');
-})->name('guest.blog.index');
+return view('guest.blog.index');
+})->name('guest.blog.index'); */
 
 Auth::routes();
 
@@ -41,3 +41,7 @@ Route::namespace ('Admin')->prefix('admin')->name('admin.')->middleware('auth')-
     Route::resource('contacts', 'ContactController')->only('index', 'show', 'destroy');
 
 });
+
+Route::get('/{any}', function () {
+    return view('guest.blog.index');
+})->where('any', '.*');

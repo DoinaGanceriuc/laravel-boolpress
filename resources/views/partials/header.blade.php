@@ -2,9 +2,10 @@
     <div class="top_left links">
         <a href=""><img src="" alt="">Logo</a>
         <a href="">Products</a>
-        <a href="{{ route('guest.posts.index') }}">News</a>
-        <a href="{{ route('guest.contacts') }}">Contacts</a>
-        <a href="{{ route('guest.blog.index') }}">Blog</a>
+        {{-- <a href="{{ route('guest.posts.index') }}">News</a>
+        <a href="{{ route('guest.contacts') }}">Contacts</a> --}}
+        <router-link to="/">Home</router-link>
+        <router-link to="/posts">Blog</router-link>
     </div>
 
     <div class="">
