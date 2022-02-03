@@ -2,9 +2,7 @@
 
 @section('content')
 
-    <div class="">
-        <App></App>
+    <post-component :post={{ $post }}></post-component>
 
-    </div>
 
 @endsection

@@ -17,6 +17,7 @@ Vue.use(VueRouter)
 
 const Home = Vue.component('Home', require('./pages/Home.vue').default);
 const Posts = Vue.component('Posts', require('./pages/Posts.vue').default);
+const Post = Vue.component('Post', require('./pages/Post.vue').default);
 
 /* DEFINIZIONE ROTTE */
 
@@ -30,6 +31,11 @@ const routes = [
         path: '/posts',
         name: 'posts',
         component: Posts,
+    },
+    {
+        path: '/posts/:id',
+        name: 'post',
+        component: Post,
     }
 
 
@@ -57,6 +63,7 @@ const router = new VueRouter({
 Vue.component('App', require('./App.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('posts-list-component', require('./components/PostsListComponent.vue').default);
+Vue.component('post-component', require('./components/PostComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

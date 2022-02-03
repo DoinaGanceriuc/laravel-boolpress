@@ -57,7 +57,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $single_post = Post::where('id', $post->id)->with(['category', 'tags'])->first();
+        //ddd($single_post);
+        return new PostResource($single_post);
     }
 
     /**

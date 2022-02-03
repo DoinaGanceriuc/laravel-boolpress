@@ -43,5 +43,5 @@ Route::namespace ('Admin')->prefix('admin')->name('admin.')->middleware('auth')-
 });
 
 Route::get('/{any}', function () {
-    return view('guest.blog.index');
+    return view('guest.welcome');
 })->where('any', '.*');

@@ -1,7 +1,7 @@
 <template>
-    <div class="page">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-            <h1>Home page</h1>
+            <h1 class="text-center">Home page</h1>
         </div>
     </div>
 </template>
