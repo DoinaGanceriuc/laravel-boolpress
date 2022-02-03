@@ -18,6 +18,7 @@ Vue.use(VueRouter)
 const Home = Vue.component('Home', require('./pages/Home.vue').default);
 const Posts = Vue.component('Posts', require('./pages/Posts.vue').default);
 const Post = Vue.component('Post', require('./pages/Post.vue').default);
+const Page404 = Vue.component('Page404', require('./pages/Page404.vue').default);
 
 /* DEFINIZIONE ROTTE */
 
@@ -36,6 +37,10 @@ const routes = [
         path: '/posts/:id',
         name: 'post',
         component: Post,
+    },
+    {
+        path: '*',
+        component: Page404
     }
 
 

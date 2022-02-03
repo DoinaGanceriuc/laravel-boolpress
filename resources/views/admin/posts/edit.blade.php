@@ -59,7 +59,7 @@
                     <div class="mb-3">
                         <label for="image" class="form-label">Aggiorna immagine</label>
                         <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror"
-                            aria-describedby="imageHelper" accept="images/*">
+                            aria-describedby="imageHelper" accept="jpeg,jpg,png,gif,bmp,svg,webp">
                         @error('image')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

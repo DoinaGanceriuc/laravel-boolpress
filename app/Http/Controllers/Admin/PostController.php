@@ -51,7 +51,7 @@ class PostController extends Controller
         //ddd($request->all());
 
         $validated_data = $request->validate([
-            'image' => 'nullable|image|max:100',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif,bmp,svg,webp|max:100',
             'title' => 'required|unique:posts|max:255',
             'description' => 'nullable',
             'posted_at' => 'required|date_format:Y-m-d',
@@ -119,7 +119,7 @@ class PostController extends Controller
         if (Auth::id() === $post->user_id) {
 
             $validated_data = $request->validate([
-                'image' => 'nullable|image|max:100',
+                'image' => 'nullable|mimes:jpeg,jpg,png,gif,bmp,svg,webp|max:100',
                 'title' => ['required',
                     Rule::unique('posts')->ignore($post->id),
                     'max:255',

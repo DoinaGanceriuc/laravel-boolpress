@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex p-5">
-            <img class="img-fluid" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+            <img class="img-fluid w-50" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
             <div class="details ms-3">
                 <h4 class="title">{{ strtoupper($post->title) }}</h4>
                 @if ($post->category)
