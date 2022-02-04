@@ -20,16 +20,6 @@
 </template>
 
 <script>
-
-    export default {
-
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
-</script>
-
-<script>
 import PostsListComponent from "../components/PostsListComponent.vue"
     export default {
         components: {PostsListComponent},
@@ -38,18 +28,27 @@ import PostsListComponent from "../components/PostsListComponent.vue"
                 posts: null,
                 links: null,
                 meta: null,
-                loading: true
+                loading: true,
+                apiUrl: 'api/posts'
             }
 
         },
-        mounted() {
-            axios.get('api/posts').then(response => {
+        methods: {
+            getAllPosts(url) {
+                axios.get(url).then(response => {
                 console.log(response);
                 this.posts = response.data.data;
                 this.links = response.data.links;
                 this.meta = response.data.meta;
                 this.loading = false;
             })
+
+
+            }
+
+        },
+        mounted() {
+            this.getAllPosts(this.apiUrl);
             console.log('Component mounted.')
         }
     }

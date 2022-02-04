@@ -5331,16 +5331,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5351,19 +5341,25 @@ __webpack_require__.r(__webpack_exports__);
       posts: null,
       links: null,
       meta: null,
-      loading: true
+      loading: true,
+      apiUrl: 'api/posts'
     };
   },
-  mounted: function mounted() {
-    var _this = this;
+  methods: {
+    getAllPosts: function getAllPosts(url) {
+      var _this = this;
 
-    axios.get('api/posts').then(function (response) {
-      console.log(response);
-      _this.posts = response.data.data;
-      _this.links = response.data.links;
-      _this.meta = response.data.meta;
-      _this.loading = false;
-    });
+      axios.get(url).then(function (response) {
+        console.log(response);
+        _this.posts = response.data.data;
+        _this.links = response.data.links;
+        _this.meta = response.data.meta;
+        _this.loading = false;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getAllPosts(this.apiUrl);
     console.log('Component mounted.');
   }
 });
