@@ -8,7 +8,11 @@
             </p>
         </div>
     <posts-list-component :posts="posts"></posts-list-component>
-
+    <div class="pages text-center pt-5" v-if="!loading">
+        <span class="btn">Precedente</span>
+        <span class="btn btn-primary text-white">{{meta.current_page}}</span>
+        <span class="btn">Successivo</span>
+    </div>
 </div>
 
 

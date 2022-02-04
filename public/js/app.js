@@ -5337,6 +5337,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -42563,6 +42567,18 @@ var render = function () {
         : _vm._e(),
       _vm._v(" "),
       _c("posts-list-component", { attrs: { posts: _vm.posts } }),
+      _vm._v(" "),
+      !_vm.loading
+        ? _c("div", { staticClass: "pages text-center pt-5" }, [
+            _c("span", { staticClass: "btn" }, [_vm._v("Precedente")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "btn btn-primary text-white" }, [
+              _vm._v(_vm._s(_vm.meta.current_page)),
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "btn" }, [_vm._v("Successivo")]),
+          ])
+        : _vm._e(),
     ],
     1
   )
