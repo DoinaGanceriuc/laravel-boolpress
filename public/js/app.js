@@ -5356,6 +5356,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.meta = response.data.meta;
         _this.loading = false;
       });
+    },
+    prev: function prev() {
+      //console.log('cliccato su precedente');
+      this.getAllPosts(this.links.prev);
+    },
+    next: function next() {
+      //console.log('cliccato su successivo');
+      this.getAllPosts(this.links.next);
     }
   },
   mounted: function mounted() {
@@ -42566,13 +42574,35 @@ var render = function () {
       _vm._v(" "),
       !_vm.loading
         ? _c("div", { staticClass: "pages text-center pt-5" }, [
-            _c("span", { staticClass: "btn" }, [_vm._v("Precedente")]),
+            _c(
+              "span",
+              {
+                staticClass: "btn",
+                on: {
+                  click: function ($event) {
+                    return _vm.prev()
+                  },
+                },
+              },
+              [_vm._v("Precedente")]
+            ),
             _vm._v(" "),
             _c("span", { staticClass: "btn btn-primary text-white" }, [
               _vm._v(_vm._s(_vm.meta.current_page)),
             ]),
             _vm._v(" "),
-            _c("span", { staticClass: "btn" }, [_vm._v("Successivo")]),
+            _c(
+              "span",
+              {
+                staticClass: "btn",
+                on: {
+                  click: function ($event) {
+                    return _vm.next()
+                  },
+                },
+              },
+              [_vm._v("Successivo")]
+            ),
           ])
         : _vm._e(),
     ],

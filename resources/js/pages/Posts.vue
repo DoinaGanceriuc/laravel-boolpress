@@ -9,9 +9,9 @@
         </div>
     <posts-list-component :posts="posts"></posts-list-component>
     <div class="pages text-center pt-5" v-if="!loading">
-        <span class="btn">Precedente</span>
+        <span class="btn" v-on:click="prev()">Precedente</span>
         <span class="btn btn-primary text-white">{{meta.current_page}}</span>
-        <span class="btn">Successivo</span>
+        <span class="btn" v-on:click="next()">Successivo</span>
     </div>
 </div>
 
@@ -42,8 +42,15 @@ import PostsListComponent from "../components/PostsListComponent.vue"
                 this.meta = response.data.meta;
                 this.loading = false;
             })
+            },
+            prev() {
+                //console.log('cliccato su precedente');
+                this.getAllPosts(this.links.prev)
 
-
+            },
+            next() {
+                //console.log('cliccato su successivo');
+                this.getAllPosts(this.links.next)
             }
 
         },
