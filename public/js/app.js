@@ -5350,7 +5350,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get(url).then(function (response) {
-        //console.log(response);
+        console.log(response);
         _this.posts = response.data.data;
         _this.links = response.data.links;
         _this.meta = response.data.meta;
@@ -42573,41 +42573,57 @@ var render = function () {
       _c("posts-list-component", { attrs: { posts: _vm.posts } }),
       _vm._v(" "),
       !_vm.loading
-        ? _c("div", { staticClass: "pages text-center pt-5" }, [
-            _vm.meta.current_page > 1
-              ? _c(
-                  "span",
-                  {
-                    staticClass: "btn",
-                    on: {
-                      click: function ($event) {
-                        return _vm.prev()
+        ? _c(
+            "div",
+            { staticClass: "pages text-center pt-5" },
+            [
+              _vm.meta.current_page > 1
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "btn",
+                      on: {
+                        click: function ($event) {
+                          return _vm.prev()
+                        },
                       },
                     },
-                  },
-                  [_vm._v("Precedente")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c("span", { staticClass: "btn btn-primary text-white" }, [
-              _vm._v(_vm._s(_vm.meta.current_page)),
-            ]),
-            _vm._v(" "),
-            _vm.meta.current_page != _vm.meta.last_page
-              ? _c(
+                    [_vm._v("Precedente")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.meta.last_page, function (numberPage) {
+                return _c(
                   "span",
                   {
-                    staticClass: "btn",
-                    on: {
-                      click: function ($event) {
-                        return _vm.next()
+                    key: numberPage,
+                    staticClass: "btn mx-1",
+                    class:
+                      _vm.meta.current_page === numberPage
+                        ? "btn-primary text-white"
+                        : "btn-outline-dark",
+                  },
+                  [_vm._v(_vm._s(numberPage))]
+                )
+              }),
+              _vm._v(" "),
+              _vm.meta.current_page != _vm.meta.last_page
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "btn",
+                      on: {
+                        click: function ($event) {
+                          return _vm.next()
+                        },
                       },
                     },
-                  },
-                  [_vm._v("Successivo")]
-                )
-              : _vm._e(),
-          ])
+                    [_vm._v("Successivo")]
+                  )
+                : _vm._e(),
+            ],
+            2
+          )
         : _vm._e(),
     ],
     1
