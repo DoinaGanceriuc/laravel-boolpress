@@ -9,9 +9,9 @@
         </div>
     <posts-list-component :posts="posts"></posts-list-component>
     <div class="pages text-center pt-5" v-if="!loading">
-        <span class="btn" v-on:click="prev()">Precedente</span>
+        <span class="btn" v-on:click="prev()" v-if="meta.current_page > 1">Precedente</span>
         <span class="btn btn-primary text-white">{{meta.current_page}}</span>
-        <span class="btn" v-on:click="next()">Successivo</span>
+        <span class="btn" v-on:click="next()" v-if="meta.current_page != meta.last_page">Successivo</span>
     </div>
 </div>
 
@@ -36,7 +36,7 @@ import PostsListComponent from "../components/PostsListComponent.vue"
         methods: {
             getAllPosts(url) {
                 axios.get(url).then(response => {
-                console.log(response);
+                //console.log(response);
                 this.posts = response.data.data;
                 this.links = response.data.links;
                 this.meta = response.data.meta;
