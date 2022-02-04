@@ -10,7 +10,7 @@
     <posts-list-component :posts="posts"></posts-list-component>
     <div class="pages text-center pt-5" v-if="!loading">
         <span class="btn" v-on:click="prev()" v-if="meta.current_page > 1">Precedente</span>
-        <span class="btn mx-1" v-for="numberPage in meta.last_page" :key="numberPage" :class="meta.current_page === numberPage ? 'btn-primary text-white' : 'btn-outline-dark'">{{numberPage}}</span>
+        <span class="btn mx-1" v-on:click="goToPage(numberPage)" v-for="numberPage in meta.last_page" :key="numberPage" :class="meta.current_page === numberPage ? 'btn-primary text-white' : 'btn-outline-dark'">{{numberPage}}</span>
         <span class="btn" v-on:click="next()" v-if="meta.current_page != meta.last_page">Successivo</span>
     </div>
 </div>
@@ -51,6 +51,10 @@ import PostsListComponent from "../components/PostsListComponent.vue"
             next() {
                 //console.log('cliccato su successivo');
                 this.getAllPosts(this.links.next)
+            },
+            goToPage(pageNumber) {
+                console.log('cliccato sulla pagina corrente');
+                this.getAllPosts(this.apiUrl + '?page=' + pageNumber)
             }
 
         },

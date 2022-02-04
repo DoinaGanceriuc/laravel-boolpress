@@ -5364,6 +5364,10 @@ __webpack_require__.r(__webpack_exports__);
     next: function next() {
       //console.log('cliccato su successivo');
       this.getAllPosts(this.links.next);
+    },
+    goToPage: function goToPage(pageNumber) {
+      console.log('cliccato sulla pagina corrente');
+      this.getAllPosts(this.apiUrl + '?page=' + pageNumber);
     }
   },
   mounted: function mounted() {
@@ -42602,6 +42606,11 @@ var render = function () {
                       _vm.meta.current_page === numberPage
                         ? "btn-primary text-white"
                         : "btn-outline-dark",
+                    on: {
+                      click: function ($event) {
+                        return _vm.goToPage(numberPage)
+                      },
+                    },
                   },
                   [_vm._v(_vm._s(numberPage))]
                 )
